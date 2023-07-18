@@ -15,9 +15,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const className = `${inter.className} flex flex-col min-h-screen`
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={className}>{children}</body>
     </html>
   )
 }

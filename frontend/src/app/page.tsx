@@ -1,7 +1,7 @@
 import type { NextPage } from "next"
-import Footer from "components/footer"
-import Header from "components/header"
-import HomeTemplate from "components/homeTemplate"
+import Footer from "components/Footer"
+import Header from "components/Header"
+import HomeTemplate from "components/HomeTemplate"
 
 const HomePage: NextPage = (): JSX.Element => {
   return (

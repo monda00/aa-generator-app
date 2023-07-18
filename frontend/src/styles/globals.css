@@ -19,6 +19,5 @@
 */
 
 body {
-  --tw-bg-opacity: 1;
-  background-color: rgb(204 251 241 / var(--tw-bg-opacity));
+  background-color: #E2E2E2;
 }

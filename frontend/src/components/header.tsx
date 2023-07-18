@@ -1,11 +1,13 @@
+import Image from "next/image"
+
 const Header = () => {
   return (
     <header>
-      <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
-          <span className="font-semibold text-xl tracking-tight">
-            AA Generator
-          </span>
+      <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+        <div className="flex items-center flex-shrink-0 text-orange-500 mr-6">
+          <a href="/">
+            <Image src="/logo.svg" alt="Logo" width={300} height={200} />
+          </a>
         </div>
       </nav>
     </header>
