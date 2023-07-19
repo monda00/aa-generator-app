@@ -5,6 +5,7 @@ import AppHeaderMessage from "components/AppHeaderMessage"
 import InputText from "components/InputText"
 import OutputAsciiArt from "components/OutputAsciiArt"
 import TopCarousel from "components/TopCarousel"
+import { MAX_LENGTH } from "constants/maxLength"
 import generateAa from "features/api/generateAa"
 import type { ApiContext } from "types/data"
 
@@ -17,7 +18,11 @@ const HomeTemplate: NextPage = () => {
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value)
+    const value = e.target.value
+
+    if (value.length <= MAX_LENGTH) {
+      setInputText(e.target.value)
+    }
   }
 
   const convertTextToAa = async () => {

@@ -17,11 +17,6 @@ def aa_generator():
     text = request.args.get("text")
     mode = request.args.get("mode")
     aa_li = create_aa(text, mode)
-    print(aa_li[0], flush=True)
-    print(aa_li[1], flush=True)
-    print(aa_li[2], flush=True)
-    print(aa_li[3], flush=True)
-    print(aa_li[4], flush=True)
     return jsonify(
         aa = aa_li
     )

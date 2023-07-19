@@ -9,7 +9,8 @@ const AppHeaderMessage = () => {
       <div className="flex justify-center">
         <ul className="list-disc">
           <li>作れる文字の対象は英数半角文字と記号です。</li>
-          <li>文字数に制限はありません。</li>
+          <li>パターンによってはサポートしていない記号もあります。</li>
+          <li>文字数制限は100文字です。</li>
           <li>アスキーアートはランダムで生成されます。（指定不可）</li>
         </ul>
       </div>

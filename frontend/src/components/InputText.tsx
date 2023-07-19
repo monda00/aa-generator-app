@@ -1,3 +1,5 @@
+import { MAX_LENGTH } from "constants/maxLength"
+
 interface InputTextProps {
   inputText: string
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
@@ -22,6 +24,13 @@ const InputText = ({
               className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-100 sm:text-md focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
+          {inputText.length === MAX_LENGTH && (
+            <div className="mt-5 flex justify-center">
+              <p className="text-red-700 font-bold">
+                文字数制限（{MAX_LENGTH} 文字）です。
+              </p>
+            </div>
+          )}
           <div className="mt-5 flex justify-center">
             <button
               type="submit"
