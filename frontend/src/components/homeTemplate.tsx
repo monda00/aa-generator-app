@@ -14,7 +14,7 @@ const HomeTemplate: NextPage = () => {
   const [aaTexts, setAaTexts] = useState<string[]>([])
 
   const context: ApiContext = {
-    apiRootUrl: process.env.API_BASE_URL || "http://localhost:5000",
+    apiRootUrl: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000",
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

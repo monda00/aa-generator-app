@@ -39,6 +39,7 @@
     "@storybook/nextjs": "^7.0.22",
     "@storybook/react": "^7.0.22",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@types/react-slick": "^0.23.10",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",

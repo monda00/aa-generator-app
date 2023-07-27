@@ -8,6 +8,8 @@ services:
       - "3000:3000"
     container_name: frontend-nextjs
     hostname: frontend-nextjs
+    env_file:
+      - ./frontend/.env
     volumes:
       - ./frontend:/usr/src/app/frontend
     command: npm run dev
