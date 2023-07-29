@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'backend/'
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
@@ -38,7 +36,7 @@ jobs:
         run: |-
           gcloud run deploy $SERVICE_NAME \
             --project=$PROJECT_ID \
-            --source . \
+            --source ./backend \
             --region="asia-northeast1" \
             --service-account=$SERVICE_NAME@$PROJECT_ID.iam.gserviceaccount.com
             --allow-unauthenticated
