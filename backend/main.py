@@ -17,6 +17,7 @@ def aa_generator():
     text = request.args.get("text")
     mode = request.args.get("mode")
     aa_li = create_aa(text, mode)
+    print("hoge")
     return jsonify(
         aa = aa_li
     )
