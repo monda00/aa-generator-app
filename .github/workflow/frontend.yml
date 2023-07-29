@@ -9,7 +9,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
+  SERVICE_ACCOUNT_NAME: ${{ secrets.SERVICE_ACCOUNT_NAME }}
   IMAGE_URL: asia.gcr.io/${{ secrets.GCP_PROJECT_ID }}//aa-generator:latest
 
 jobs:
@@ -29,16 +29,16 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.SERVICE_NAME }}@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com
+          service_account: ${{ secrets.SERVICE_ACCOUNT_NAME }}@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
 
       - name: Deploy to Cloud Run
         run: |-
-          gcloud run deploy $SERVICE_NAME \
+          gcloud run deploy $SERVICE_ACCOUNT_NAME \
             --project=$PROJECT_ID \
             --source . \
             --region="asia-northeast1" \
-            --service-account=$SERVICE_NAME@$PROJECT_ID.iam.gserviceaccount.com
+            --service-account=$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
             --allow-unauthenticated
