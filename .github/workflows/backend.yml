@@ -7,6 +7,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  SERVICE_NAME: aa-generator-backend
   SERVICE_ACCOUNT_NAME: ${{ secrets.SERVICE_ACCOUNT_NAME }}
   IMAGE_URL: asia.gcr.io/${{ secrets.GCP_PROJECT_ID }}//aa-generator:latest
 
@@ -34,7 +35,7 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: |-
-          gcloud run deploy $SERVICE_ACCOUNT_NAME \
+          gcloud run deploy $SERVICE_NAME \
             --project=$PROJECT_ID \
             --source ./backend \
             --region="asia-northeast1" \
