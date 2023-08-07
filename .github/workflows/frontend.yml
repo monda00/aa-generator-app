@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - 'frontend/'
+      - 'frontend/**'
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  SERVICE_NAME: aa-generator-frontend
   SERVICE_ACCOUNT_NAME: ${{ secrets.SERVICE_ACCOUNT_NAME }}
-  IMAGE_URL: asia.gcr.io/${{ secrets.GCP_PROJECT_ID }}//aa-generator:latest
 
 jobs:
   build-and-deploy:
@@ -34,11 +34,14 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
 
+      - name: Build image
+        run: |-
+          gcloud builds submit --pack image=asia-northeast1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/aa-generator-frontend ./frontend
+
       - name: Deploy to Cloud Run
         run: |-
-          gcloud run deploy $SERVICE_ACCOUNT_NAME \
+          gcloud run deploy $SERVICE_NAME \
             --project=$PROJECT_ID \
-            --source . \
             --region="asia-northeast1" \
-            --service-account=$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
-            --allow-unauthenticated
+            --service-account=$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com \
+            --image=asia-northeast1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/aa-generator-frontend:latest
