@@ -5,7 +5,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# test github actions
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
