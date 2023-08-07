@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - id: 'auth'
+      - id: 'auth':with:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
@@ -45,3 +45,10 @@ jobs:
             --region="asia-northeast1" \
             --service-account=$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com \
             --image=asia-northeast1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/aa-generator-frontend:latest
+
+      - name: Delete old images
+        uses: 'asia-docker.pkg.dev/gcr-cleaner/gcr-cleaner/gcr-cleaner-cli:latest'
+        with:
+          args: >-
+            --repo=asia-northeast1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/aa-generator-frontend
+            --keep=3
