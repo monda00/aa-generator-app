@@ -33,11 +33,14 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
 
+      - name: Build image
+        run: |-
+          gcloud builds submit --pack image=asia-northeast1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/aa-generator-backend ./backend
+
       - name: Deploy to Cloud Run
         run: |-
           gcloud run deploy $SERVICE_NAME \
             --project=$PROJECT_ID \
-            --source ./backend \
+            --image=asia-northeast1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/aa-generator-backend:latest
             --region="asia-northeast1" \
             --service-account=$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
-            --allow-unauthenticated
