@@ -41,6 +41,6 @@ jobs:
         run: |-
           gcloud run deploy $SERVICE_NAME \
             --project=$PROJECT_ID \
-            --image=asia-northeast1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/aa-generator-backend:latest
             --region="asia-northeast1" \
-            --service-account=$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
+            --service-account=$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com \
+            --image=asia-northeast1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/aa-generator-backend:latest
